@@ -1,2 +1,2 @@
 [web]
-34.239.183.77 ansible_user=ec2-user
+34.239.183.77 ansible_user=ubuntu
