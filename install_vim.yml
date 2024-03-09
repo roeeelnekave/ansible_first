@@ -1,0 +1,18 @@
+---
+- name: Install vim-nox on all hosts
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - name: Install vim-nox on Debian/Ubuntu
+    apt:
+      name: vim-nox
+      state: present
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Install vim-enhanced on RHEL/CentOS
+    yum:
+      name: vim-enhanced
+      state: present
+    when: ansible_facts['os_family'] == "RedHat"
