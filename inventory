@@ -1,5 +1,6 @@
+
 [ubuntu]
-34.239.183.77 ansible_user=ubuntu 
+34.239.183.77 ansible_user=ubuntu apache_package=apache2 php_package=libapache2-mod-php
 
 [redhat]
-52.55.155.94 ansible_user=ec2-user 
+52.55.155.94 ansible_user=ec2-user apache_package=httpd php_package=php
