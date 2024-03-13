@@ -1,0 +1,32 @@
+    - name: updates (RedHat)
+      tags: always
+      package:
+        update_cache: yes
+      when: ansible_distribution == "RedHat"
+
+    - name: install apache and php for RedHat servers
+      tags: apache,httpd,redhat
+      package:
+        name:
+          - httpd
+          - php
+        state: latest
+        update_cache: yes
+      when: ansible_distribution == "RedHat"
+
+
+    - name: start httpd on RedHat
+      tags: apache,httpd,redhat
+      lineinfile: 
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^ServerAdmin'
+        line: ServerAdmin roote@localhost
+      when: ansible_distribution == "RedHat"
+      register: httpd
+
+    - name: restart httpd on RedHat
+      tags: apache,httpd,redhat
+      service:
+        name: httpd
+        state: restarted
+      when: httpd.changed
